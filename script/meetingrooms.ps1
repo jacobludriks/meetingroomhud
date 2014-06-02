@@ -5,13 +5,13 @@ $mailboxlist["room2"] = @("boardroom","conferenceroom")
 #meeting bar colour
 $colour = "#274A80"
 #web server directory
-$webdir = "C:\gitprojects\meetingrooms\site"
+$webdir = "C:\inetpub\wwwroot"
 #multidimensional array
 $mailboxes = @{}
-$mailboxes["room1"] = @{"Name"="Meeting Room 1";"Email"="amucommroom@sanitarium.co.nz"}
-$mailboxes["room2"] = @{"Name"="Meeting Room 2";"Email"="resakr03@sanitarium.co.nz"}
-$mailboxes["boardroom"] = @{"Name"="Board Room";"Email"="amutasmanroom@sanitarium.co.nz"}
-$mailboxes["conferenceroom"] = @{"Name"="Conference Room";"Email"="resakr07@sanitarium.co.nz"}
+$mailboxes["room1"] = @{"Name"="Meeting Room 1";"Email"="meetingroom1@contoso.com"}
+$mailboxes["room2"] = @{"Name"="Meeting Room 2";"Email"="meetingroom2@contoso.com"}
+$mailboxes["boardroom"] = @{"Name"="Board Room";"Email"="boardroom@contoso.com"}
+$mailboxes["conferenceroom"] = @{"Name"="Conference Room";"Email"="conferenceroom@contoso.com"}
 #main script
 $StartDate = get-date -Date "$(get-date -format d) 8:00am"
 $EndDate = get-date -Date "$(get-date -format d) 5:00pm"
