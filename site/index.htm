@@ -1,0 +1,64 @@
+<!doctype html>
+<html><head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script src="js/jquery-2.1.1.min.js" charset="utf-8"></script>
+<script src="js/queryvar.js"></script>
+<script src="js/d3.min.js" charset="utf-8"></script>
+<script src="js/d3-timeline.js"></script>
+<script src="js/clock.js"></script>
+<script src="js/date.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript">
+	var timestampbegin;
+	var timestampend;
+	var width = 1250;
+	var labelDraw;
+	function timelinedraw() {
+		gettimestamps();
+		var chart = d3.timeline()
+			.beginning(timestampbegin)
+			.ending(timestampend)
+			.height(600)
+			.itemHeight(100)
+			.stack()
+			.margin({left:180, right:30, top:0, bottom:0})
+			;
+		var svg = d3.select("#timeline").append("svg").attr("width", width)
+			.datum(labelDraw).call(chart);
+	}
+	function gettimestamps() {
+		var currenttime = new Date.now();
+		var year = currenttime.getFullYear();
+		var month = currenttime.getMonth();
+		var day = currenttime.getDate();
+		timestampbegin = (new Date(year, month, day, 8).getTime());
+		timestampend = (new Date(year, month, day, 17).getTime());
+	}
+  $(document).ready(function(){
+	if (getQueryVariable("screen")) {
+		d3.json("json/" + getQueryVariable("screen") + ".json",function(error, data) {
+			if(error) {
+				console.log(error);
+			} else {
+				labelDraw = data;
+				timelinedraw();
+			}
+		});
+	}
+	else {
+		d3.select("#timeline")
+			.html("<br /><br />Append a valid screen= to the end of the URL<br/>eg. screen=room1")
+			.style("font-size","20px")
+			.style("color","white");
+	}
+	GetClock();
+  });
+</script>
+</head>
+<body>
+<div class="container">
+<br /><br /><br />
+<div class="clock" id="clockbox"></div>
+<div id="timeline"></div>
+</div>
+</body></html>
